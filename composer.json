@@ -1,5 +1,5 @@
 {
-    "name": "innova/media-bornage-bundle",
+    "name": "judileroi/media-bornage-bundle",
     "description" : "Claroline Media bornage Bundle",
     "type" : "claroline-plugin",
     "authors" : [{
@@ -15,7 +15,7 @@
         "claroline/core-bundle": "~6.0"
     },
     "autoload": {
-        "psr-0": { "Innova\\MediaResourceBundle": "" }
+        "psr-0": { "Judileroi\\MediaResourceBundle": "" }
     },
-    "target-dir": "Innova/MediaResourceBundle"
+    "target-dir": "Judileroi/MediaResourceBundle"
 }

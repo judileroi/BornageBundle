@@ -1,5 +1,5 @@
 <?php
-namespace Innova\MediaBornageBundle;
+namespace Judileroi\MediaBornageBundle;
 use Claroline\CoreBundle\Library\DistributionPluginBundle;
 use Claroline\KernelBundle\Bundle\ConfigurationBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
