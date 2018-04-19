@@ -1,0 +1,21 @@
+{
+    "name": "innova/media-bornage-bundle",
+    "description" : "Claroline Media bornage Bundle",
+    "type" : "claroline-plugin",
+    "authors" : [{
+			"name" : "Judicael Tandjiekpon",
+			"email" : "sagbo-judicael.tandjiekpon@univ-grenoble-alpes.fr"
+		}
+	],
+    "keywords": ["Claroline", "MediaBornage"],
+    "homepage": "https://github.com/judileroi/BornageBundle",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4.1",
+        "claroline/core-bundle": "~6.0"
+    },
+    "autoload": {
+        "psr-0": { "Innova\\MediaResourceBundle": "" }
+    },
+    "target-dir": "Innova/MediaResourceBundle"
+}
