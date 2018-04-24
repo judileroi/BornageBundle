@@ -1,0 +1,4 @@
+innova_media_bornage:
+    resource: "@InnovaMediaBornageBundle/Controller/MediaBornageController.php"
+    prefix:   /
+    type: annotation
