@@ -14,7 +14,7 @@
         "php": ">=5.4.1"
     },
     "autoload": {
-        "psr-0": { "Judileroi\\MediaBornageBundle": "" }
+        "psr-0": { "Innova\\MediaBornageBundle": "" }
     },
-    "target-dir": "judileroi/MediaBornageBundle"
+    "target-dir": "Innova/MediaBornageBundle"
 }
