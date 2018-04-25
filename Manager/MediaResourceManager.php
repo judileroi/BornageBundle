@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * @DI\Service("innova_media_resource.manager.media_resource")
+ * @DI\Service("innova_media_bornage.manager.media_resource")
  */
 class MediaResourceManager
 {

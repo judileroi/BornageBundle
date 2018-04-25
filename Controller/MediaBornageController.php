@@ -15,21 +15,22 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * Class MediaResourceController.
+ * Class MediaBornageController.
  *
  * @Route("workspaces/{workspaceId}", options={"expose"=true})
  * @ParamConverter("workspace", class="ClarolineCoreBundle:Workspace\Workspace", options={"mapping": {"workspaceId": "id"}})
  */
-class MediaResourceController extends Controller
+class MediaBornageController extends Controller
 {
     /**
      * display a media resource.
      *
-     * @Route("/open/{id}", requirements={"id" = "\d+"}, name="innova_media_resource_open")
+     * @Route("/open/bornage/{id}", requirements={"id" = "\d+"}, name="innova_media_bornage_open")
      * @Method("GET")
      */
     public function openAction(Workspace $workspace, MediaResource $mr)
     {
+        
         if (false === $this->container->get('security.context')->isGranted('OPEN', $mr->getResourceNode())) {
             throw new AccessDeniedException();
         }

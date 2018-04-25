@@ -53,24 +53,25 @@ class MediaResourceListener extends ContainerAware
     }
 
     /**
-     * @DI\Observe("open_innova_media_resource")
+     * @DI\Observe("open_innova_media_bornage")
      */
     public function onOpen(OpenResourceEvent $event)
     {
         $mediaResource = $event->getResource();
         $route = $this->container
                 ->get('router')
-                ->generate('innova_media_resource_open', [
+                ->generate('innova_media_bornage_open', [
             'id' => $mediaResource->getId(),
             'workspaceId' => $mediaResource->getWorkspace()->getId(),
           ]
         );
+        var_dump($route);
         $event->setResponse(new RedirectResponse($route));
         $event->stopPropagation();
     }
 
     /**
-     * @DI\Observe("create_innova_media_resource")
+     * @DI\Observe("create_innova_media_bornage")
      *
      * @param CreateResourceEvent $event
      *
@@ -84,18 +85,19 @@ class MediaResourceListener extends ContainerAware
         $request = $this->container->get('request');
         $form->submit($request);
         if ($form->isValid()) {
+            
             $mediaResource = $form->getData();
             $file = $form['file']->getData();
             $workspace = $event->getParent()->getWorkspace();
-            $this->container->get('innova_media_resource.manager.media_resource')->createMediaResourceDefaultOptions($mediaResource);
-            $this->container->get('innova_media_resource.manager.media_resource')->handleMediaResourceMedia($file, $mediaResource, $workspace);
+            $this->container->get('innova_media_bornage.manager.media_resource')->createMediaResourceDefaultOptions($mediaResource);
+            $this->container->get('innova_media_bornage.manager.media_resource')->handleMediaResourceMedia($file, $mediaResource, $workspace);
             // Send new MediaResource to dispatcher through event object
             $event->setResources([$mediaResource]);
         } else {
             $content = $this->container->get('templating')->render(
                     'ClarolineCoreBundle:Resource:createForm.html.twig', [
                       'form' => $form->createView(),
-                      'resourceType' => 'innova_media_resource',
+                      'resourceType' => 'innova_media_bornage',
                     ]
             );
             $event->setErrorFormContent($content);
@@ -106,7 +108,7 @@ class MediaResourceListener extends ContainerAware
     }
 
     /**
-     * @DI\Observe("create_form_innova_media_resource")
+     * @DI\Observe("create_form_innova_media_bornage")
      */
     public function onCreateForm(CreateFormResourceEvent $event)
     {
@@ -115,7 +117,7 @@ class MediaResourceListener extends ContainerAware
         $content = $this->container->get('templating')->render(
                 'ClarolineCoreBundle:Resource:createForm.html.twig', [
                     'form' => $form->createView(),
-                    'resourceType' => 'innova_media_resource',
+                    'resourceType' => 'innova_media_bornage',
                 ]
         );
         $event->setResponseContent($content);
@@ -123,12 +125,12 @@ class MediaResourceListener extends ContainerAware
     }
 
     /**
-     * @DI\Observe("delete_innova_media_resource")
+     * @DI\Observe("delete_innova_media_bornage")
      **/
     public function onDelete(DeleteResourceEvent $event)
     {
         $mediaResource = $event->getResource();
-        $manager = $this->container->get('innova_media_resource.manager.media_resource');
+        $manager = $this->container->get('innova_media_bornage.manager.media_resource');
         $manager->delete($mediaResource);
 
         $event->stopPropagation();

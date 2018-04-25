@@ -4,7 +4,7 @@ plugin:
 
   resources:
     - class: Innova\MediaBornageBundle\Entity\MediaResource
-      name: innova_media_resource
+      name: innova_media_bornage
       is_exportable: false
       actions:
         - name: administrate

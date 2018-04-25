@@ -1,6 +1,6 @@
 <?php
 
-namespace Innova\MediaResourceBundle\Migrations\pdo_mysql;
+namespace Innova\MediaBornageBundle\Migrations\pdo_mysql;
 
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
@@ -15,7 +15,7 @@ class Version20160621112001 extends AbstractMigration
     public function up(Schema $schema)
     {
         $this->addSql('
-            CREATE TABLE media_resource_media (
+            CREATE TABLE media_bornage_media (
                 id INT AUTO_INCREMENT NOT NULL,
                 media_resource_id INT NOT NULL,
                 url VARCHAR(255) NOT NULL,
@@ -25,7 +25,7 @@ class Version20160621112001 extends AbstractMigration
             ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB
         ');
         $this->addSql('
-            CREATE TABLE media_resource_help_link (
+            CREATE TABLE media_bornage_help_link (
                 id INT AUTO_INCREMENT NOT NULL,
                 region_config_id INT NOT NULL,
                 url VARCHAR(510) NOT NULL,
@@ -34,7 +34,7 @@ class Version20160621112001 extends AbstractMigration
             ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB
         ');
         $this->addSql('
-            CREATE TABLE media_resource_options (
+            CREATE TABLE media_bornage_options (
                 id INT AUTO_INCREMENT NOT NULL,
                 mode VARCHAR(255) NOT NULL,
                 showTextTranscription TINYINT(1) DEFAULT 0 NOT NULL, 
@@ -43,7 +43,7 @@ class Version20160621112001 extends AbstractMigration
             ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB
         ');
         $this->addSql('
-            CREATE TABLE media_resource (
+            CREATE TABLE media_bornage(
                 id INT AUTO_INCREMENT NOT NULL,
                 options_id INT DEFAULT NULL,
                 name VARCHAR(255) NOT NULL,
@@ -54,7 +54,7 @@ class Version20160621112001 extends AbstractMigration
             ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB
         ');
         $this->addSql('
-            CREATE TABLE media_resource_region (
+            CREATE TABLE media_bornage_region (
                 id INT AUTO_INCREMENT NOT NULL,
                 media_resource_id INT NOT NULL,
                 start DOUBLE PRECISION NOT NULL,
@@ -66,7 +66,7 @@ class Version20160621112001 extends AbstractMigration
             ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB
         ');
         $this->addSql('
-            CREATE TABLE media_resource_region_config (
+            CREATE TABLE media_bornage_region_config (
                 id INT AUTO_INCREMENT NOT NULL,
                 region_id INT NOT NULL,
                 has_loop TINYINT(1) NOT NULL,
@@ -87,19 +87,19 @@ class Version20160621112001 extends AbstractMigration
             ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB
         ');
         $this->addSql('
-            ALTER TABLE media_resource_media
+            ALTER TABLE media_bornage_media
             ADD CONSTRAINT FK_E0A22F7E7E5AEFB6 FOREIGN KEY (media_resource_id)
             REFERENCES media_resource (id)
         ');
         $this->addSql('
-            ALTER TABLE media_resource_help_link
+            ALTER TABLE media_bornage_help_link
             ADD CONSTRAINT FK_F1D62D0C771B52B7 FOREIGN KEY (region_config_id)
-            REFERENCES media_resource_region_config (id)
+            REFERENCES media_bornage_region_config (id)
         ');
         $this->addSql('
             ALTER TABLE media_resource
             ADD CONSTRAINT FK_B3F0DAA43ADB05F1 FOREIGN KEY (options_id)
-            REFERENCES media_resource_options (id)
+            REFERENCES media_bornage_options (id)
         ');
         $this->addSql('
             ALTER TABLE media_resource
@@ -108,65 +108,65 @@ class Version20160621112001 extends AbstractMigration
             ON DELETE CASCADE
         ');
         $this->addSql('
-            ALTER TABLE media_resource_region
+            ALTER TABLE media_bornage_region
             ADD CONSTRAINT FK_B1E36FE87E5AEFB6 FOREIGN KEY (media_resource_id)
             REFERENCES media_resource (id)
         ');
         $this->addSql('
-            ALTER TABLE media_resource_region_config
+            ALTER TABLE media_bornage_region_config
             ADD CONSTRAINT FK_2EEE09F098260155 FOREIGN KEY (region_id)
-            REFERENCES media_resource_region (id)
+            REFERENCES media_bornage_region (id)
         ');
         $this->addSql('
-            ALTER TABLE media_resource_help_text
+            ALTER TABLE media_bornage_help_text
             ADD CONSTRAINT FK_FCF1133A771B52B7 FOREIGN KEY (region_config_id)
-            REFERENCES media_resource_region_config (id)
+            REFERENCES media_bornage_region_config (id)
         ');
     }
 
     public function down(Schema $schema)
     {
         $this->addSql('
-            ALTER TABLE media_resource
+            ALTER TABLE media_bornage
             DROP FOREIGN KEY FK_B3F0DAA43ADB05F1
         ');
         $this->addSql('
-            ALTER TABLE media_resource_media
+            ALTER TABLE media_bornage_media
             DROP FOREIGN KEY FK_E0A22F7E7E5AEFB6
         ');
         $this->addSql('
-            ALTER TABLE media_resource_region
+            ALTER TABLE media_bornage_region
             DROP FOREIGN KEY FK_B1E36FE87E5AEFB6
         ');
         $this->addSql('
-            ALTER TABLE media_resource_region_config
+            ALTER TABLE media_bornage_region_config
             DROP FOREIGN KEY FK_2EEE09F098260155
         ');
         $this->addSql('
-            ALTER TABLE media_resource_help_link
+            ALTER TABLE media_bornage_help_link
             DROP FOREIGN KEY FK_F1D62D0C771B52B7
         ');
         $this->addSql('
-            ALTER TABLE media_resource_help_text
+            ALTER TABLE media_bornage_help_text
             DROP FOREIGN KEY FK_FCF1133A771B52B7
         ');
         $this->addSql('
-            DROP TABLE media_resource_media
+            DROP TABLE media_bornage_media
         ');
         $this->addSql('
-            DROP TABLE media_resource_help_link
+            DROP TABLE media_bornage_help_link
         ');
         $this->addSql('
-            DROP TABLE media_resource_options
+            DROP TABLE media_bornage_options
         ');
         $this->addSql('
             DROP TABLE media_resource
         ');
         $this->addSql('
-            DROP TABLE media_resource_region
+            DROP TABLE media_bornage_region
         ');
         $this->addSql('
-            DROP TABLE media_resource_region_config
+            DROP TABLE media_bornage_region_config
         ');
         $this->addSql('
             DROP TABLE media_resource_help_text
